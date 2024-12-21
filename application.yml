@@ -1,0 +1,60 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/ecommerce
+    username: root
+    password: qqqqqqqq
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+      location: ${java.io.tmpdir}
+  redis:
+    host: localhost
+    port: 6379
+    # password: your-password  # 如果有密码
+    timeout: 5000
+    database: 0
+
+server:
+  port: 8080
+
+# 跨域配置
+cors:
+  allowed-origins: "http://localhost:8081"
+  allowed-methods: "*"
+  allowed-headers: "*"
+  allow-credentials: true
+
+# JWT配置
+jwt:
+  secret: your-secret-key
+  expiration: 86400000  # 24小时
+
+# 文件存储路径(本地)
+file:
+  upload-dir: ./uploads
+
+payment:
+  timeout-seconds: 300
+  max-amount: 50000
+  max-retries: 3
+
+# 日志配置
+logging:
+  level:
+    root: INFO
+    com.ecommerce: DEBUG
+  file:
+    name: logs/ecommerce.log
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
